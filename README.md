@@ -6,7 +6,7 @@ It is organized by the 10 official vulnerability lessons required in the project
 ## Team Members
 
 - Rashed Jafry - 202157670
-- Student Name - ID
+- Moayed Aljaddawi - 202248800
 - Student Name - ID
 - Student Name - ID
 
