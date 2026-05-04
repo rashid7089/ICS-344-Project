@@ -15,6 +15,20 @@ A user could pay for the original item quantity while the final order stored a l
 - `DVSA-ORDER-UPDATE` Lambda function
 - `DVSA-ORDERS-DB` DynamoDB table
 
+## Environment
+
+DVSA frontend URL used during testing:
+
+```text
+http://dvsa-website-962415228810-us-east-1.s3-website.us-east-1.amazonaws.com/
+```
+
+Backend API endpoint used during testing:
+
+```text
+https://n1pq1eb7kd.execute-api.us-east-1.amazonaws.com/dvsa/order
+```
+
 ## Root Cause
 
 The backend did not enforce strict workflow state transitions. Billing did not lock the order immediately when payment started, and the update function allowed order modifications during the billing process. This allowed billing and update requests to overlap and create an inconsistent final order state.
