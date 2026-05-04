@@ -14,9 +14,15 @@ It is organized by the 10 official vulnerability lessons required in the project
        - Lesson 2
        - Lesson 3
        - Lesson 8
-- Student Name - ID
-- Student Name - ID
-
+- Moath Haimour - 202182130
+    - Lessons Completed:
+       - Lesson 1
+       - Lesson 4
+       - Lesson 5
+- Ayman Al Johani - 202016260
+    - Lessons Completed:
+       - Lesson 6
+       - Lesson 7
 ## Repository Structure
 
 ```text
