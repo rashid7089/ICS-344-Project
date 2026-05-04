@@ -28,24 +28,67 @@ It is organized by the 10 official vulnerability lessons required in the project
 ```text
 .
 ├── README.md
+├── Final-Presentation/
+│   └── DVSA_Final_Presentation.pptx
+├── Video-Links.md
+│
 ├── 01-Event-Injection/
-│   └── README.md
+│   ├── README.md
+│   ├── Report/
+│   ├── Figures/
+│   └── Code/
+│
 ├── 02-Broken-Authentication/
-│   └── README.md
+│   ├── README.md
+│   ├── Report/
+│   ├── Figures/
+│   └── Code/
+│
 ├── 03-Sensitive-Data-Exposure/
-│   └── README.md
+│   ├── README.md
+│   ├── Report/
+│   ├── Figures/
+│   └── Code/
+│
 ├── 04-Insecure-Cloud-Configurations/
-│   └── README.md
+│   ├── README.md
+│   ├── Report/
+│   ├── Figures/
+│   └── Code/
+│
 ├── 05-Broken-Access-Control/
-│   └── README.md
+│   ├── README.md
+│   ├── Report/
+│   ├── Figures/
+│   └── Code/
+│
 ├── 06-Denial-of-Service/
-│   └── README.md
+│   ├── README.md
+│   ├── Report/
+│   ├── Figures/
+│   └── Code/
+│
 ├── 07-Over-Privileged-Functions/
-│   └── README.md
+│   ├── README.md
+│   ├── Report/
+│   ├── Figures/
+│   └── Code/
+│
 ├── 08-Logic-Vulnerabilities/
-│   └── README.md
+│   ├── README.md
+│   ├── Report/
+│   ├── Figures/
+│   └── Code/
+│
 ├── 09-Vulnerable-Dependencies/
-│   └── README.md
+│   ├── README.md
+│   ├── Report/
+│   ├── Figures/
+│   └── Code/
+│
 └── 10-Unhandled-Exceptions/
-    └── README.md
+    ├── README.md
+    ├── Report/
+    ├── Figures/
+    └── Code/
 ```
