@@ -15,6 +15,20 @@ An attacker could modify JWT identity claims and impersonate another user. This 
 - Cognito JWT authentication flow
 - API Gateway / Lambda backend
 
+## Environment
+
+DVSA frontend URL used during testing:
+
+```text
+http://dvsa-website-962415228810-us-east-1.s3-website.us-east-1.amazonaws.com/
+```
+
+Backend API endpoint used during testing:
+
+```text
+https://n1pq1eb7kd.execute-api.us-east-1.amazonaws.com/dvsa/order
+```
+
 ## Root Cause
 
 JWT payloads are Base64URL-encoded, not encrypted. The backend decoded the JWT payload and trusted the claims directly without verifying the token signature. Because of this, a modified token could be accepted as valid.
