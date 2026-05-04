@@ -16,6 +16,20 @@ The exploit generated a signed S3 receipt archive URL through `DVSA-ADMIN-GET-RE
 - Order Manager IAM execution role
 - S3 receipts bucket
 
+## Environment
+
+DVSA frontend URL used during testing:
+
+```text
+http://dvsa-website-962415228810-us-east-1.s3-website.us-east-1.amazonaws.com/
+```
+
+Backend API endpoint used during testing:
+
+```text
+https://n1pq1eb7kd.execute-api.us-east-1.amazonaws.com/dvsa/order
+```
+
 ## Root Cause
 
 The vulnerable path combined unsafe backend execution with overly broad IAM permissions. The `DVSA-ORDER-MANAGER` execution role was allowed to invoke Lambda functions broadly using `lambda:InvokeFunction` on `Resource: "*"`. This allowed injected code running inside the user-facing order function to invoke the privileged receipt-generation function.
