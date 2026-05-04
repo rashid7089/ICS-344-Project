@@ -28,8 +28,7 @@ It is organized by the 10 official vulnerability lessons required in the project
 ```text
 .
 ├── README.md
-├── Final-Presentation/
-│   └── DVSA_Final_Presentation.pptx
+├── ICS344 project - Presentation.pptx
 ├── Video-Links.md
 │
 ├── 01-Event-Injection/
