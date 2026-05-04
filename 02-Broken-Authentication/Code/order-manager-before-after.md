@@ -15,8 +15,9 @@ The backend decoded the JWT payload and trusted the `username` claim without ver
 var auth_data = jose.util.base64url.decode(token_sections[1]);
 var token = JSON.parse(auth_data);
 var user = token.username;
+```
 
-# Before Fix
+# Problem
 
 JWT payloads are Base64URL-encoded, not encrypted. Because the backend did not verify the token signature, an attacker could modify identity fields such as username or sub and impersonate another user.
 
@@ -50,3 +51,52 @@ async function verifyCognitoJwt(jwt) {
 
   return claims;
 }
+```
+The full implementation also validates issuer, expiration, and token use before returning the claims.
+
+## After Fix
+
+The backend now extracts the Bearer token from the Authorization header, verifies it using Cognito JWT verification, and only then trusts identity claims.
+
+```js
+var auth_header = (headers.Authorization || headers.authorization || "");
+var jwt = auth_header.replace(/^Bearer\s+/i, "").trim();
+
+if (!jwt) {
+  return callback(null, resp(401, { status: "err", msg: "missing authorization" }));
+}
+
+verifyCognitoJwt(jwt).then((claims) => {
+  var user = claims.username || claims["cognito:username"] || claims.sub;
+
+  if (!user) {
+    return callback(null, resp(401, { status: "err", msg: "missing subject" }));
+  }
+
+  var isAdmin = false;
+  ```
+
+## Invalid Token Handling
+
+If JWT verification fails, the backend rejects the request instead of trusting the modified token.
+
+```js
+}).catch((e) => {
+  console.log("JWT verify failed:", e);
+  return callback(null, resp(401, { status: "err", msg: "invalid token" }));
+});
+```
+
+## What Changed
+- Added JWT verification using Cognito public keys.
+- Added JWKS retrieval and key-store caching.
+- Removed direct trust in decoded JWT payload data.
+- Verified token signature before reading username, cognito:username, or sub.
+- Added validation for issuer, expiration, and token use.
+- Added error handling to reject invalid or tampered tokens.
+
+## Why This Fix Works
+
+The backend now verifies the JWT cryptographically before trusting identity claims. If an attacker modifies the JWT payload, the original signature no longer matches the modified content. The verification step fails, and the backend returns invalid token.
+
+This prevents forged tokens from being used to impersonate other users while still allowing valid Cognito tokens to work normally.
